@@ -1,8 +1,9 @@
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
-
 
 
 class Main {
@@ -20,10 +21,10 @@ class Main {
     private static String checkStack(String P) {
         Stack<Character> stack = new Stack<>();
 
-        for (char p : P.toCharArray()) {
-            if (p == '(') {
-                stack.push(p);
-            } else if (p == ')') {
+        for (int i=0; i<P.length(); i++) {
+            if (P.charAt(i) == '(') {
+                stack.push(P.charAt(i));
+            } else if (P.charAt(i) == ')') {
                 if (stack.empty()) {
                     return "NO";
                 }
