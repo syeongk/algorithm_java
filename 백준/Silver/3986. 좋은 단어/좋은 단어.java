@@ -1,5 +1,4 @@
 
-
 import java.util.Stack;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -15,7 +14,6 @@ public class Main {
         for (int i=0; i<n; i++){
             Stack<Character> stack = new Stack<>();
             String S = br.readLine();
-            Character str;
 
             for (int j=0; j<S.length(); j++){
 
@@ -25,7 +23,7 @@ public class Main {
                 }
                  // 스택 top과 문자가 같을 때
                 else if (stack.peek() == S.charAt(j)){
-                    str = stack.pop();
+                    stack.pop();
                 }
             }
 
