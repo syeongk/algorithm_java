@@ -1,27 +1,32 @@
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class Main {
-    public static void main (String[] args) throws IOException {
 
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n*2];
 
-        Queue<Integer> q = new LinkedList<>();
+        int front = 0;
+        int back = n-1;
 
-        for (int i=1; i<n+1; i++){
-            q.offer(i);
-        }
-        
-        while (q.size()!=1) {
-            q.poll();
-            q.offer(q.poll());
+        for (int i=0; i<n; i++){
+            arr[i] = i+1;
         }
 
-        System.out.println(q.peek());
+        while (back!=front) {
+            front++;
+            arr[back+1] = arr[front];
+            back += 1;
+            front += 1;
+        }
+
+        System.out.println(arr[back]);
+
     }
 }
