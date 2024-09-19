@@ -1,63 +1,61 @@
 
 
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.IOException;
 import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main (String[] args) throws IOException{
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Deque<Integer> q = new ArrayDeque<>();
         int n = Integer.parseInt(br.readLine());
+        ArrayDeque<Integer> q = new ArrayDeque<>();
+        StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < n; i++) {
-            String str = br.readLine();
-            String[] s = str.split(" ");
-
-            switch (s[0]) {
-                case "push":
-                    q.offer(Integer.parseInt(s[1]));
-                    break;
+        while (n-- > 0){
+            String command = br.readLine();
+            switch (command) {
                 case "pop":
-                    if (!q.isEmpty()) {
-                        System.out.println(q.poll());
+                    if (q.isEmpty()) {
+                        sb.append(-1).append("\n");
                     } else {
-                        System.out.println(-1);
+                        sb.append(q.pollFirst()).append("\n");
                     }
                     break;
                 case "size":
-                    System.out.println(q.size());
+                    sb.append(q.size()).append("\n");
                     break;
                 case "empty":
-                    if (q.isEmpty()) {
-                        System.out.println(1);
-                    } else {
-                        System.out.println(0);
+                    if (q.isEmpty()){
+                        sb.append(1).append("\n");
+                    }
+                    else {
+                        sb.append(0).append("\n");
                     }
                     break;
                 case "front":
-                    if (q.isEmpty()) {
-                        System.out.println(-1);
-                    } else {
-                        System.out.println(q.peek());
+                    if (!q.isEmpty()){
+                        sb.append(q.peekFirst()).append("\n");
+                    }
+                    else{
+                        sb.append(-1).append("\n");
                     }
                     break;
                 case "back":
-                    if (q.isEmpty()) {
-                        System.out.println(-1);
-                    } else {
-                        System.out.println(q.peekLast());
+                    if (!q.isEmpty()){
+                        sb.append(q.peekLast()).append("\n");
+                    }
+                    else{
+                        sb.append(-1).append("\n");
                     }
                     break;
-
-
+                default:
+                    q.offer(Integer.parseInt(command.substring(5)));
+                    break;
             }
-
         }
+        System.out.print(sb);
     }
+
 }
