@@ -1,5 +1,7 @@
 
-import java.util.Stack;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,7 +14,7 @@ public class Main {
         int result = 0;
 
         for (int i=0; i<n; i++){
-            Stack<Character> stack = new Stack<>();
+            Deque<Character> stack = new ArrayDeque<>();
             String S = br.readLine();
 
             for (int j=0; j<S.length(); j++){
