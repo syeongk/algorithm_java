@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.PriorityQueue;
 
 public class Main {
-    public static int ans;
+    private static int ans;
 
     public void solution() throws IOException {
 
