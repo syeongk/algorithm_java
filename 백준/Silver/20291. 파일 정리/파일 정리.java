@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Main{
+public class Main {
 
     public void solution() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -11,18 +11,13 @@ public class Main{
 
         StringTokenizer st;
         TreeMap<String, Integer> tm = new TreeMap<>();
+
         for (int i=0; i<N ; i++){
             st = new StringTokenizer(br.readLine(), ".");
             st.nextToken();
             String name = st.nextToken();
-            if (tm.containsKey(name)){
-                int value = tm.get(name);
-                tm.put(name, value+1);
-            } else {
-                tm.put(name, 1);
-            }
+            tm.put(name, tm.getOrDefault(name,0)+1 );
         }
-
         StringBuilder sb = new StringBuilder();
         for (String key : tm.keySet()){
             int count = tm.get(key);
