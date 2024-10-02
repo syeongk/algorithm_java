@@ -13,30 +13,26 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         HashMap<String, Double> hm = new HashMap<>();
 
-        int total = 0;
+        double total = 0.0;
         List<String> li = new ArrayList<>();
         while(true){
             String str = br.readLine();
             if (str==null || str.equals("")){
                 break;
             }
-            total += 1;
-            if (hm.containsKey(str)){
-                double cnt = hm.get(str);
-                hm.put(str, cnt+1);
-            } else {
-                hm.put(str, 1.0);
+            total += 1.0;
+            if (!hm.containsKey(str)){
                 li.add(str);
             }
+            hm.put(str, hm.getOrDefault(str,0.0)+1.0);
         }
         Collections.sort(li);
 
         StringBuilder sb = new StringBuilder();
         for (String key : li){
-            double value = hm.get(key);
-            String value2 = String.format("%.4f", (value*100) / total);
-            hm.put(key, Double.parseDouble(value2));
-            sb.append(key).append(" ").append(value2).append('\n');
+            double value = hm.get(key) * 100;
+            String value2 = String.format("%.4f", value / total);
+            sb.append(key + " " + value2 + "\n");
         }
 
         System.out.println(sb);
