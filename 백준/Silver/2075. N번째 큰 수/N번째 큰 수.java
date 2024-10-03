@@ -22,10 +22,11 @@ public class Main {
         }
 
         for (int i = 0; i < N; i++) {
-            int num = pq.poll();
             if (i == N-1) {
-                System.out.println(num);
+                System.out.println(pq.poll());
+                return;
             }
+            pq.poll();
         }
     }
 
