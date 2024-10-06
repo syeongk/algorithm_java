@@ -8,28 +8,28 @@ public class Main {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String targetNum = br.readLine();
-        if (targetNum.length()==1){
-            targetNum = '0' + targetNum;
+        String target = br.readLine();
+        if (target.length()==1){
+            target = '0' + target;
         }
 
-        String cycleNum = null;
+        String cycle = null;
 
         int ans = 0;
-        while (!targetNum.equals(cycleNum)) {
+        while (!target.equals(cycle)) {
             int sum = 0;
             String strSum = null;
 
             if (ans == 0)
-                cycleNum = targetNum;
-            
-            sum = cycleNum.charAt(0) - '0' + cycleNum.charAt(1) - '0';
+                cycle = target;
+
+            sum = cycle.charAt(0) - '0' + cycle.charAt(1) - '0';
             strSum = Integer.toString(sum);
             if (strSum.length() == 1)
-                cycleNum = Character.toString(cycleNum.charAt(1)) + strSum;
+                cycle = cycle.charAt(1) + strSum;
             else
-                cycleNum = Character.toString(cycleNum.charAt(1)) + Character.toString(strSum.charAt(1));
-            
+                cycle = cycle.charAt(1) + Character.toString(strSum.charAt(1));
+
             ans += 1;
         }
 
