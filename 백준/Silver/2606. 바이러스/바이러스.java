@@ -4,6 +4,10 @@ import java.io.*;
 
 // The main method must be in a class named "Main".
 class Main {
+
+    private static int count;
+    private static boolean[] visited;
+    private static List<List<Integer>> g = new ArrayList<>();
     
     public static void main(String[] args) throws IOException {
         new Main().solution();
@@ -13,11 +17,10 @@ class Main {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
-        List<List<Integer>> g = new ArrayList<>();
         
         int V = Integer.parseInt(br.readLine());
         int E = Integer.parseInt(br.readLine());
-
+  
         for (int i=0; i<V+1; i++){
             g.add(new ArrayList<>());
         }
@@ -29,26 +32,23 @@ class Main {
 
             g.get(a).add(b);
             g.get(b).add(a);
-        }
+        }       
 
-        Queue<Integer> q = new ArrayDeque<>();
-        boolean[] visited = new boolean[V+1];
-        int count = 0;
+        visited = new boolean[V+1];
+        DFS(1);
         
-        q.offer(1);
-        visited[1] = true;
-        
-        while (!q.isEmpty()){
-            for (int v : g.get(q.poll())){
-                if (visited[v] == false){
-                    q.offer(v);
-                    visited[v] = true;
-                    count += 1;
-                }
-            }
-        }
-
         System.out.println(count);
         
+    }
+
+    public void DFS(int vertex){
+        visited[vertex] = true;
+        
+        for(int v: g.get(vertex)){
+            if (visited[v] == false){
+                count += 1;
+                DFS(v);
+            }
+        }
     }
 }
