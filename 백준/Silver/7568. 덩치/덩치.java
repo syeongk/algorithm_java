@@ -14,7 +14,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         int n = Integer.parseInt(br.readLine());
-        int[][] arr = new int[50][2];
+        int[][] arr = new int[n][2];
 
         for (int i=0; i<n; i++){
             st = new StringTokenizer(br.readLine());
