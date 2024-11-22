@@ -1,13 +1,16 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         new Main().solution();
     }
 
-    public void solution() {
-        Scanner s = new Scanner(System.in);
-        int n = s.nextInt();
+    public void solution() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
         int five = n / 5; // 5의 최대 개수
         int two = 0;
 
