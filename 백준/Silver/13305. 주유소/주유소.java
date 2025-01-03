@@ -11,32 +11,26 @@ public class Main {
         int[] cities = new int[n];
 
         //거리
-        long dSum = 0;
         StringTokenizer st = new StringTokenizer(br.readLine());
         for(int i=0; i<n-1; i++){
             distances[i] = Integer.parseInt(st.nextToken());
-            dSum += distances[i];
         }
 
         //주유소 리터당 가격
-        int cMin = 0;
         st = new StringTokenizer(br.readLine());
         for(int i=0; i<n; i++){
             cities[i] = Integer.parseInt(st.nextToken());
-            if (i==0)
-                cMin = cities[i];
-            else if (i<n-1 && cities[i] < cMin)
-                cMin = cities[i];
         }
 
+        //리터당 가격 최소 비교하며 저장
+        int cMin = 0;
         long output = 0;
         for (int i=0; i<n-1; i++){
-            if (cities[i] == cMin) {
-                output += cities[i] * dSum;
-                break;
-            }
-            output += cities[i] * distances[i];
-            dSum -= distances[i];
+            if (i==0)
+                cMin = cities[i];
+            else if (cities[i] < cMin)
+                cMin = cities[i];
+            output += cMin * distances[i];
         }
         System.out.println(output);
 
