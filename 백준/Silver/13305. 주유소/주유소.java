@@ -30,7 +30,7 @@ public class Main {
                 cMin = cities[i];
             else if (cities[i] < cMin)
                 cMin = cities[i];
-            output += cMin * distances[i];
+            output += (long) cMin * distances[i];
         }
         System.out.println(output);
 
