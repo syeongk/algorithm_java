@@ -14,13 +14,9 @@ public class Main {
 
         int cnt = 0;
         for (int i=n-1; i>0; i--){
-            while (true){
-                if (level[i] > level[i-1])
-                    break;
-                else {
-                    level[i-1]--;
-                    cnt++;
-                }
+            if (level[i] <= level[i - 1]) {
+                cnt += level[i - 1] - level[i] + 1;
+                level[i - 1] = level[i] - 1;
             }
         }
         System.out.println(cnt);
