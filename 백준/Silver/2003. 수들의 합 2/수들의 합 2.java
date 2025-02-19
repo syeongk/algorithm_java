@@ -20,12 +20,9 @@ public class Main {
         int start = 0;
         int end = 0;
         int sum = arr[0];
-        while(true) {
+        while(start < N) {
             if(sum > M){
-                sum -= arr[start];
-                start++;
-                if (start == N)
-                    break;
+                sum -= arr[start++];
             } else {
                 if(sum == M)
                     ans += 1;
