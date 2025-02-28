@@ -2,14 +2,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Queue;
 
 public class Main {
-    static int[] arr;
-    static int time;
-    static Queue<Integer> q;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] input = br.readLine().split(" ");
@@ -22,36 +17,36 @@ public class Main {
             return;
         }
 
-        time = 0;
-        arr = new int[100001];
-        q = new ArrayDeque<>();
+        int[] arr = new int[100001];
+        for (int i=0; i<=100000; i++){
+            arr[i] = -1;
+        }
+
+        Queue<Integer> q = new ArrayDeque<>();
         q.offer(N); // 수빈이의 위치 (배열 인덱스)
-        arr[N] = time;
+        arr[N] = 0;
 
         while(!q.isEmpty()){
-            time++;
-            int qSize = q.size();
-            for (int i=0; i<qSize; i++) {
-                int now = q.poll(); // 수빈이의 현재 위치
-                int[] idxs = {now - 1, now + 1, now * 2};
+            int now = q.poll(); // 수빈이의 현재 위치
+            int[] idxs = {now - 1, now + 1, now * 2};
 
-                for (int idx : idxs) {
-                    // 범위가 넘어가는 경우 처리X
-                    if (idx < 0 || idx > 100000)
-                        continue;
+            for (int idx : idxs) {
+                // 범위가 넘어가는 경우 처리X
+                if (idx < 0 || idx > 100000)
+                    continue;
 
-                    // arr[idx] 를 이미 방문한 경우 처리X
-                    if (arr[idx] != 0)
-                        continue;
+                // arr[idx] 를 이미 방문한 경우 처리X
+                if (arr[idx] != -1)
+                    continue;
 
-                    arr[idx] = time; // 방문 처리
-                    // 수빈이가 동생을 찾은 경우 시간 출력
-                    if (idx == M) {
-                        System.out.println(time);
-                        return;
-                    }
-                    q.offer(idx);
+                arr[idx] = arr[now] + 1; // 방문 처리
+                // 수빈이가 동생을 찾은 경우 시간 출력
+                if (idx == M) {
+                    System.out.println(arr[idx]);
+                    return;
                 }
+                q.offer(idx);
+
             }
 
         }
