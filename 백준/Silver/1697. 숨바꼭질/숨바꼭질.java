@@ -33,18 +33,13 @@ public class Main {
             int qSize = q.size();
             for (int i=0; i<qSize; i++) {
                 int now = q.poll(); // 수빈이의 현재 위치
-
-                ArrayList<Integer> idxs = new ArrayList<>();
-                int a = now - 1; // 수빈이가 이동할 위치
-                int b = now + 1;
-                int c = now * 2;
-
-                // a, b, c (수빈이가 이동할 위치)가 범위를 벗어나지 않은 경우 idxs 에 넣음
-                checkIdx(idxs, a);
-                checkIdx(idxs, b);
-                checkIdx(idxs, c);
+                int[] idxs = {now - 1, now + 1, now * 2};
 
                 for (int idx : idxs) {
+                    // 범위가 넘어가는 경우 처리X
+                    if (idx < 0 || idx > 100000)
+                        continue;
+
                     // arr[idx] 를 이미 방문한 경우 처리X
                     if (arr[idx] != 0)
                         continue;
@@ -62,9 +57,4 @@ public class Main {
         }
 
     }
-    public static void checkIdx(ArrayList<Integer> idxs, int idx){
-        if (idx >= 0 && idx <= 100000)
-            idxs.add(idx);
-    }
-
 }
